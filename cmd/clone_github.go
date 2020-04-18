@@ -18,7 +18,7 @@ func getGitHubOrgCloneUrls() ([]Repo, error) {
 	client := github.NewClient(tc)
 
 	opt := &github.RepositoryListByOrgOptions{
-		Type:        "sources",
+		Type:        "all",
 		ListOptions: github.ListOptions{PerPage: 100, Page: 0},
 	}
 
@@ -44,6 +44,14 @@ func getGitHubOrgCloneUrls() ([]Repo, error) {
 			if *repo.Archived == true {
 				continue
 			}
+		}
+
+		if *repo.Fork == true {
+			continue
+		}
+
+		if *repo.Size == 0 {
+			continue
 		}
 
 		if os.Getenv("GHORG_CLONE_PROTOCOL") == "https" {
