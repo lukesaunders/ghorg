@@ -18,7 +18,7 @@ func getGitHubOrgCloneUrls() ([]Repo, error) {
 	client := github.NewClient(tc)
 
 	opt := &github.RepositoryListByOrgOptions{
-		Type:        "all",
+		Type:        "sources",
 		ListOptions: github.ListOptions{PerPage: 100, Page: 0},
 	}
 
