@@ -399,7 +399,7 @@ func CloneAllRepos() {
 						return
 					}
 
-					cmd = exec.Command("git", "pull", "origin", branch)
+					cmd = exec.Command("git", "fetch", "origin", "-a")
 					cmd.Dir = repoDir
 					err = cmd.Run()
 					if err != nil {
